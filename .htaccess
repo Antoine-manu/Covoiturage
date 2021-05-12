@@ -1,0 +1,8 @@
+# active le module de réécriture d'url
+RewriteEngine On
+
+RewriteCond ${DOCUMENT_ROOT}%{SCRIPT_FILENAME} !-f
+RewriteCond ${DOCUMENT_ROOT}%{SCRIPT_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(svg|js|css|jpe?g|gif|png|bmp|ico)$ [NC]
+# récupère tous ce qu'il y a dans l'url et passe le en paramètre de la page index.php
+RewriteRule (.*) index.php?action=$1 [L,QSA]
