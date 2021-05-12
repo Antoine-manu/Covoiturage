@@ -1,4 +1,4 @@
-<?php require_once __DIR__.'../models/usersModel.php';
+<?php require_once ROOT.'/models/usersModel.php';
 $regextext = '/^[A-Za-ÿ]+((\s)?((\'|\-|\.)?([A-Za-z])+))*$/m';
 $regexaddress = '/^\d{1,3}\s\w+\s\w+(\s\w+)*\s\d{5}\s\w+$/';
 $regexdate = '/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/';
