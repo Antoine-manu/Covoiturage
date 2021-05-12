@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="fr">
 
 <head>
@@ -37,14 +36,3 @@
       <div class="line"></div>
     </label>
   </nav>
-=======
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
->>>>>>> fb8f9bf6705aa319bf6217d8a4cf6162c10fdf9d
