@@ -11,12 +11,17 @@ function getDatabase() {
 
 function createUser($first_name, $last_name, $email, $password, $phone) {
     $pdo = getDatabase();
-    $sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `phone`) VALUES (`:firstname`, `:lastname`, `:email`, `:password`, `:phone`)";
+    $sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `phone`) VALUES (:firstname, :lastname, :email, :password, :phone)";
     $req = $pdo->prepare($sql);
-    $req->bindValue(':firstname', $first_name, PDO::PARAM_INT);
-    $req->bindValue(':lastname', $last_name, PDO::PARAM_INT);
-    $req->bindValue(':email', $email, PDO::PARAM_INT);
-    $req->bindValue(':password', $password, PDO::PARAM_INT);
-    $req->bindValue(':phone', $phone, PDO::PARAM_INT);
-    $req->execute();
+    $req->bindValue(':firstname', $first_name, PDO::PARAM_STR);
+    $req->bindValue(':lastname', $last_name, PDO::PARAM_STR);
+    $req->bindValue(':email', $email, PDO::PARAM_STR);
+    $req->bindValue(':password', $password, PDO::PARAM_STR);
+    $req->bindValue(':phone', $phone, PDO::PARAM_STR);
+    try {
+        $req->execute();
+    }
+    catch (PDOException $e) {
+        var_dump($e->getMessage());
+    }
 }

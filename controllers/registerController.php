@@ -1,4 +1,5 @@
 <?php require_once ROOT.'/models/usersModel.php';
+require_once ROOT.'/views/register.php';
 $regextext = '/^[A-Za-ÿ]+((\s)?((\'|\-|\.)?([A-Za-z])+))*$/m';
 $regexaddress = '/^\d{1,3}\s\w+\s\w+(\s\w+)*\s\d{5}\s\w+$/';
 $regexdate = '/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/';
@@ -36,14 +37,14 @@ if (!empty($_POST)) {
     if (empty($email)) {
         $errors['email'] = "Le champ est requis";
     }
-    elseif (!filter_var($email, FILTER_VALIDATE_FLOAT)) {
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Le format n'est pas correct";
     }
     if (empty($password)) {
         $errors['password'] = "Le champ est requis";
     }
     else if (!preg_match($regexpassword, $password)) {
-        $password['password'] = "Le format n'est pas correct";
+        $errors['password'] = "Le format n'est pas correct";
     }
     if (empty($phone)) {
         $errors['password'] = "Le champ est requis";
@@ -51,8 +52,10 @@ if (!empty($_POST)) {
     else if (!preg_match($regexphone, $phone)) {
         $phone['password'] = "Le format n'est pas correct";
     }
+    var_dump($errors);
     if (empty($errors)) {
-            if (createUser($first_name, $last_name, $email, $password, $phone )) {
+            $password = password_hash($password, PASSWORD_BCRYPT);
+            if (createUser($first_name, $last_name, $email, $password, $phone)) {
                 header('location:index.php');
                 exit();
             }
