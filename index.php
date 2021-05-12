@@ -1,4 +1,7 @@
 <?php
+if (!session_id()) {
+    session_start();
+}
 // constante document root "chemin absolu jusqu'à la racine du site
 define('ROOT', __DIR__);
 // babse url

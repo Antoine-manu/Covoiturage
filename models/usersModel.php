@@ -25,3 +25,19 @@ function createUser($first_name, $last_name, $email, $password, $phone) {
         var_dump($e->getMessage());
     }
 }
+
+function getUser($email) {
+    $pdo = getDatabase();
+    $sql = "SELECT `first_name`, `last_name`, `user_id`, `email`, `password` FROM `users`
+            WHERE email = :email";
+    $req = $pdo->prepare($sql);
+    $req->bindValue(':email', $email, PDO::PARAM_STR);
+
+    try {
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e) {
+        var_dump($e->getMessage());
+    }
+}
